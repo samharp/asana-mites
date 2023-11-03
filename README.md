@@ -8,7 +8,9 @@ But no more! In using the Asana API, this project makes mite-creation as easy as
 
 **NOTE:** This project uses Python 3.x to work. If you do not have Python installed on your machine, please do so [here](https://www.python.org/downloads/).
 
-## How it works
+<br>
+
+## Getting Started
 
 ### Clone/Fork this repo
 
@@ -46,23 +48,28 @@ Now, you will need to create the following JSON file to hold your sensitive data
 
 **NOTE:** Current implementation only allows for one Asana assignee, project, and workspace to be set to receive mites. This may change later, but due to the nature of what mites are, these small tasks shouldn't be dealt out to teammates: this is for you.
 
+
 ### Run the file!
 
 To run the `mites.py` file, either double click on the file in your file explorer or `cd` to the folder where these files reside in Terminal/PowerShell. From there, you can run the file by entering:
 
 ```
->python mites.py
+python mites.py
 ```
+
+<br>
 
 You will be prompted to enter the name of your mite ("What is this teeny task?"), and will continue asking for more mites until you enter 'X' to exit.
 
 Alternatively, you can create a mite just by calling the file. To do this in terminal, pass the name of the mite as an argument:
 
 ```
->python mites.py "the name of my mite here"
+python mites.py "the name of my mite here"
 ```
 
 Personally, I recommend creating a command within your bash Profile to easily launch this file. That way, you don't have to `cd` to this folder everytime, you can run it from any folder.
+
+<br>
 
 ## Reference
 
