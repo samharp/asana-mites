@@ -18,27 +18,39 @@ I will assume you know how to do this, but if not, please consult your favorite 
 
 This folder will hold all of the data that you don't want to go public (and in turn, out of your GitHub repo). It is automatically included in the `.gitignore`, but if you want to name the folder something else, go right ahead.
 
-### Create `.txt` files
+### Gather your token & GIDs
 
-Now, you will need to create the following text files to hold your sensitive data. Each file should include just one value: the respective value of the named file. Future implementations may use JSON instead of separate files:
+You have your private space for sensitive data, now you need the data.
 
-  - `tokens/access-token.txt`
-  - `tokens/workspace-gid.txt`
-  - `tokens/assignee-gid.txt`
-  - `tokens/project-gid.txt`
+First, you will need to request an Asana Access Token. Follow [these steps](https://developers-legacy.asana.com/docs/personal-access-token) to get your authentication token.
 
-To access your Asana token or determine your GID values, you will first need to follow [these steps](https://developers-legacy.asana.com/docs/personal-access-token) to receive an API token, and then visit the Asana [documentation/Request tester](https://developers.asana.com/reference/createtask) to figure out your other GID values. You can also get respective GID values by deconstructing links to your project/task/etc.
+Next, you will need the GID values for your Asana workspace, project, assignee (most likely, yourself), and tag (to allow for easy searching later). You can pull these values by using the [Asana Request tester](https://developers.asana.com/reference/createtask) or by deconstructing links to your project/task/etc., like:
 
 ```
 www.asana.com/0/{project_gid}/{task_gid}
 ```
 
+### Create `tokens.json`
+
+Now, you will need to create the following JSON file to hold your sensitive data. The file will include all of the token values & GIDs you gathered in the previous step. Your JSON file should look something like this:
+
+```
+{
+  "accessToken": "1/1234567890:123XXX456XXX7890XXX",
+  "assigneeGid": "1234567890",
+  "projectGid": "1234567890",
+  "workspaceGid": "1234567890",
+  "tagsGid": "1234567890"
+}
+```
 
 **NOTE:** Current implementation only allows for one Asana assignee, project, and workspace to be set to receive mites. This may change later, but due to the nature of what mites are, these small tasks shouldn't be dealt out to teammates: this is for you.
 
 ### Run the file!
 
 To run the `mites.py` file, either double click on the file in your file explorer or `cd` to the folder where these files reside in Terminal/PowerShell. From there, you can run the file by entering `python mites.py`. You will be prompted to enter the name of your mite ("What is this teeny task?"), and will continue asking for more mites until you enter 'X' to exit.
+
+Personally, I recommend creating a command within your bash Profile to easily launch this file. That way, you don't have to `cd` to this folder everytime, you can run it from any folder.
 
 ## Reference
 
