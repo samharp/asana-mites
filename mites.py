@@ -4,7 +4,7 @@ import json
 # define text colors (to show success/fail messages)
 class colors:
   green = "\033[1;32m"
-  red = "\033[1;32m"
+  red = "\033[31m"
   reset = "\033[0m"
 
 # read file contents of necessary tokens/gids
@@ -27,6 +27,14 @@ while loopVal == True:
     print(colors.reset)
     loopVal = False
   else:
-    # send POST request
-    result = client.tasks.create_task({"name": miteVal, "assignee": tokens["assigneeGid"], "workspace": tokens["workspaceGid"], "projects": [tokens["projectGid"]], "tags": [tokens["tagsGid"]]}, opt_pretty=True)
-    print(colors.green + "beep-boop: new mite made! You can access it here: " + result["permalink_url"])
+    try:
+      # send POST request
+      result = client.tasks.create_task({"name": miteVal, "assignee": tokens["assigneeGid"], "workspace": tokens["workspaceGid"], "projects": [tokens["projectGid"]], "tags": [tokens["tagsGid"]]}, opt_pretty=True)
+      # success message
+      print(colors.green + "beep-boop: new mite made! You can access it here: " + result["permalink_url"])
+
+    except KeyError:
+      print(colors.red + "Something doesn't look right with your token configuration. Please reference the README to confirm it is set up correctly and try again.")
+    except:
+      print(colors.red + "It looks like something happened with your request. Ensure the right values are placed in your token configuration and try again.")
+      
