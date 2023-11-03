@@ -8,15 +8,19 @@ tokens = json.loads(tokensFile.read())
 
 # authenticate with access token
 client = asana.Client.access_token(tokens["accessToken"])
+# remove pesky deprecation warnings
+client.LOG_ASANA_CHANGE_WARNINGS = False
 
 loopVal = True
 while loopVal == True:
   # get user input (what to name mite)
-  miteVal = input("What is this mite? (X/C to Exit): ")
+  miteVal = input("\033[0m What is this mite? (X/C to Exit): ")
 
   if miteVal.lower() == 'exit' or miteVal.lower() == 'x' or miteVal.lower() == 'c':
     tokensFile.close()
+    print("\033[0m")
     loopVal = False
   else:
     # send POST request
     result = client.tasks.create_task({"name": miteVal, "assignee": tokens["assigneeGid"], "workspace": tokens["workspaceGid"], "projects": [tokens["projectGid"]], "tags": [tokens["tagsGid"]]}, opt_pretty=True)
+    print("\033[1;32m beep-boop: new mite made! You can access it here: " + result["permalink_url"])
