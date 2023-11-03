@@ -48,7 +48,19 @@ Now, you will need to create the following JSON file to hold your sensitive data
 
 ### Run the file!
 
-To run the `mites.py` file, either double click on the file in your file explorer or `cd` to the folder where these files reside in Terminal/PowerShell. From there, you can run the file by entering `python mites.py`. You will be prompted to enter the name of your mite ("What is this teeny task?"), and will continue asking for more mites until you enter 'X' to exit.
+To run the `mites.py` file, either double click on the file in your file explorer or `cd` to the folder where these files reside in Terminal/PowerShell. From there, you can run the file by entering:
+
+```
+>python mites.py
+```
+
+You will be prompted to enter the name of your mite ("What is this teeny task?"), and will continue asking for more mites until you enter 'X' to exit.
+
+Alternatively, you can create a mite just by calling the file. To do this in terminal, pass the name of the mite as an argument:
+
+```
+>python mites.py "the name of my mite here"
+```
 
 Personally, I recommend creating a command within your bash Profile to easily launch this file. That way, you don't have to `cd` to this folder everytime, you can run it from any folder.
 
