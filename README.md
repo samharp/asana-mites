@@ -1,4 +1,4 @@
-# Using Asana's API to track Mites (AKA simple, pesky tasks)
+# Using Asana's API to create Mites (small, yet pesky tasks) in Terminal
 
 Mites (patent-pending) are the tiny tasks that you think of throughout the day, "Oh yeah, I'll have to remember that when I get home." They never take longer than 5 minutes to complete (wash the dishes, water the plants, or feed the cat) - but when they start to pile up, they pile up fast.
 
