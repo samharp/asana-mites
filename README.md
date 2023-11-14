@@ -2,9 +2,9 @@
 
 Mites (patent-pending) are the tiny tasks that you think of throughout the day, "Oh yeah, I'll have to remember that when I get home." They never take longer than 5 minutes to complete (wash the dishes, water the plants, or feed the cat) - but when they start to pile up, they pile up fast.
 
-Because I use Asana to handle work-related tasks, it only makes sense to include these mites on my Asana projects as well. However, creating tasks can sometimes be exactly that, a task. Some tasks just need to be written down - they don't need to have assignees, projects, subtasks, attachments, or any of the many features of project management systems. I used to keep these little things to do on a scrap of paper, but with separate to-do lists, inevitably things get forgotten/overlooked.
+Because I use Asana to handle work-related tasks, it only makes sense to include these mites on my Asana projects as well. However, creating tasks can sometimes be exactly that, a task. Some tasks just need to be written down - they don't need to have assignees, projects, subtasks, attachments, or any of the many features of project management systems. I used to keep these little things to do on a scrap of paper, but with separate to-do lists, inevitably things get forgotten and overlooked.
 
-But no more! In using the Asana API, this project makes mite creation as easy as it is to complete them. 
+But no more! In using the Asana API, this project makes mite creation and management as easy as it is to complete them. 
 
 **NOTE:** This project uses Python 3.x to work. If you do not have Python installed on your machine, you can get it [here](https://www.python.org/downloads/).
 
@@ -26,7 +26,7 @@ You have your private space for sensitive data, now you need the data itself.
 
 First, you will need to request an Asana Access Token. Follow [these steps](https://developers-legacy.asana.com/docs/personal-access-token) to get your authentication token.
 
-Next, you will need the GID values for your Asana workspace, project, assignee (most likely yourself), and tag (it's recommended to create a "Mite" tag in Asana to allow for easy searching). You can pull these values by using the [Asana Request tester](https://developers.asana.com/reference/createtask) or by deconstructing links to your project/task/etc., like:
+Next, you will need the GID values for your Asana workspace, project (we'll call it your "Mitebox"), assignee (yourself), and tag (it's recommended to create a "Mite" tag in Asana to allow for easy searching/managing). You can pull these values by using the [Asana Request tester](https://developers.asana.com/reference/createtask) or by deconstructing links to your project/task/etc., like:
 
 ```
 www.asana.com/0/{project_gid}/{task_gid}
@@ -39,14 +39,14 @@ You will need to create the following JSON file to hold your token values & GIDs
 ```
 {
   "accessToken": "1/1234567890:123XXX456XXX7890XXX",
-  "assigneeGid": "1234567890",
-  "projectGid": "1234567890",
   "workspaceGid": "1234567890",
+  "assigneeGid": "1234567890",
+  "miteboxGid": "1234567890",
   "tagsGid": "1234567890"
 }
 ```
 
-**NOTE:** Current implementation only allows for one Asana assignee, project, and workspace to be set up to receive mites. This may change later, but due to the nature of what mites are, these small tasks shouldn't be dealt out to teammates anyways - they are just for you.
+**NOTE:** Current implementation only allows for one Asana workspace, Mitebox, and assignee. This may change later, but due to the nature of what mites are, these small tasks shouldn't be categorized anyways (and if they do need to be, they probably aren't mites, but *tasks*).
 
 
 ### Run the file!

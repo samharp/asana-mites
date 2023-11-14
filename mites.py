@@ -21,11 +21,15 @@ client.LOG_ASANA_CHANGE_WARNINGS = False
 # function for accepting user input
 def getUserInput():
   # get user input (what to name mite)
-  userInput = input(colors.reset + "What is this mite? (X/C to Exit): ")
+  userInput = input(colors.reset + "What is this mite? (X to Exit, C to Clean): ")
 
-  if userInput.lower() == 'exit' or userInput.lower() == 'x' or userInput.lower() == 'c':
+  if userInput.lower() == 'exit' or userInput.lower() == 'x':
     tokensFile.close()
     print(colors.reset)
+  elif userInput.lower() == 'clean' or userInput.lower() == 'c':
+    print("cleaning Mitebox!")
+    # cleanMitebox
+    getUserInput()
   else:
     createMite(userInput)
 
@@ -33,7 +37,7 @@ def getUserInput():
 def createMite(miteVal):
   try:
     # send POST request
-    result = client.tasks.create_task({"name": miteVal, "assignee": tokens["assigneeGid"], "workspace": tokens["workspaceGid"], "projects": [tokens["projectGid"]], "tags": [tokens["tagsGid"]]}, opt_pretty=True)
+    result = client.tasks.create_task({"name": miteVal, "assignee": tokens["assigneeGid"], "workspace": tokens["workspaceGid"], "projects": [tokens["miteboxGid"]], "tags": [tokens["tagsGid"]]}, opt_pretty=True)
     # success message
     print(colors.green + "beep-boop: new mite made! You can access it here: " + result["permalink_url"])
 
