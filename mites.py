@@ -102,6 +102,8 @@ def getRandoMite():
       print(colors.green + "hey! what about this: ")
       print(randoMite["name"] + "; you can access it here: " + randoMite["permalink_url"])
       x += 1
+    else:
+      print(colors.red + "I can pick an incompleted one faster if you clean out your mitebox first...")
 
   getUserInput()
 
