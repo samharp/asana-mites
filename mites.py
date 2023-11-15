@@ -29,6 +29,8 @@ def getUserInput():
     print(colors.reset)
   elif userInput.lower() == "clean" or userInput.lower() == "c":
     cleanMitebox()
+  elif userInput.lower() == "info" or userInput.lower() == "i":
+    # getMiteboxInfo()
   else:
     createMite(userInput)
 

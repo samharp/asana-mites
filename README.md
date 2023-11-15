@@ -42,6 +42,8 @@ You will need to create the following JSON file to hold your token values & GIDs
   "workspaceGid": "1234567890",
   "assigneeGid": "1234567890",
   "miteboxGid": "1234567890",
+  "toDoGid": "1234567890",
+  "donePileGid": "1234567890",
   "tagsGid": "1234567890"
 }
 ```
