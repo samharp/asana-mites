@@ -7,6 +7,7 @@ import datetime
 class colors:
   green = "\033[1;32m"
   red = "\033[31m"
+  cyan = "\033[96m"
   reset = "\033[0m"
 
 # read file contents of necessary tokens/gids
@@ -22,14 +23,17 @@ client.LOG_ASANA_CHANGE_WARNINGS = False
 # function for accepting user input
 def getUserInput():
   # get user input (what to name mite)
-  userInput = input(colors.reset + "what is this mite? (OR: X to exit, C to clean): ")
+  print(colors.reset + "__________")
+  print("enter the title of a new mite or one of the following commands:")
+  print("C to clean; X to exit")
+  userInput = input(colors.cyan + ": ")
 
   if userInput.lower() == "exit" or userInput.lower() == "x":
     tokensFile.close()
     print(colors.reset)
   elif userInput.lower() == "clean" or userInput.lower() == "c":
     cleanMitebox()
-  elif userInput.lower() == "info" or userInput.lower() == "i":
+  # elif userInput.lower() == "info" or userInput.lower() == "i":
     # getMiteboxInfo()
   else:
     createMite(userInput)
@@ -53,7 +57,7 @@ def cleanMitebox():
   numberOfTasks = 0
   try:
     # get all completed tasks in to-do section
-    tasksCompletedResult = client.tasks.get_tasks({"section": tokens["toDoGid"], "opt_fields": ["completed"]})
+    tasksCompletedResult = client.tasks.get_tasks({"section": tokens["doPileGid"], "opt_fields": ["completed"]})
 
     # Iterating through the result as a list
     for i in list(tasksCompletedResult):
