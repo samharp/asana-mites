@@ -2,6 +2,7 @@ import asana
 import json
 import sys
 import random
+# from lxml import etree
 
 # define text colors (to show success/fail messages)
 class colors:
@@ -43,8 +44,11 @@ def getUserInput():
 # function for creating task (sending request)
 def createMite(miteVal):
   try:
+    htmlText = "<body>This task was created using <a href='https://github.com/samharp/asana-mites'>Mitebox (Python)</a>.</body>"
+    # rootie = etree.HTML(htmlText)
+
     # send POST request
-    result = client.tasks.create_task({"name": miteVal, "assignee": tokens["assigneeGid"], "workspace": tokens["workspaceGid"], "projects": [tokens["miteboxGid"]], "tags": [tokens["tagsGid"]]})
+    result = client.tasks.create_task({"name": miteVal, "assignee": tokens["assigneeGid"], "workspace": tokens["workspaceGid"], "projects": [tokens["miteboxGid"]], "tags": [tokens["tagsGid"]], "html_notes": htmlText})
     # success message
     print(colors.green + "beep-boop: new mite made! you can access it here: " + result["permalink_url"])
 
@@ -96,7 +100,7 @@ def getMiteboxInfo():
 
   if x > 0:
     print("clean your Mitebox to move these to the Done Pile.")
-    
+
   getUserInput()
 
 def getRandoMite():
