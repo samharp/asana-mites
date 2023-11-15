@@ -91,9 +91,10 @@ python mites.py "the name of my mite in quotes"
 
 Additional commands allow for simple management of your mites. Most management (renaming, markingas complete, etc.) will need to be done inside Asana, but the following commands allow for management within Terminal/PowerShell:
 
-- **'C' to clean**: Move all of your completed mites to the Done Pile.
-- **'I' for info**: Get basic information on your Mitebox, like how many mites are incomplete, how many you've completed, and easy links to access your Mitebox
-- **'X' to exit**: Simply exit the mite-creation loop and exit the program
+- **'C' to clean:** Move all of your completed mites to the Done Pile.
+- **'I' for info:** Get basic information on your Mitebox
+- **'Z' for random:** Don't know what you should do? 'Z' returns a random mite that has not-yet been completed
+- **'X' to exit:** Simply exit the mite-creation loop and exit the program
 
 <br>
 

@@ -24,8 +24,8 @@ client.LOG_ASANA_CHANGE_WARNINGS = False
 def getUserInput():
   # get user input (what to name mite)
   print(colors.reset + "__________")
-  print("enter the title of a new mite")
-  print("(...or one of the following commands: C to clean; I for info; Z for random mite; X to exit)")
+  print("enter the title of a new Mite")
+  print("(...or one of the following commands: C to clean; I for info; Z for random Mite; X to exit)")
   userInput = input(colors.cyan + ": ")
 
   if userInput.lower() == "exit" or userInput.lower() == "x":
@@ -82,8 +82,21 @@ def cleanMitebox():
 
 # function for getting info on Mitebox
 def getMiteboxInfo():
-    
+  x = 0
+  result = client.tasks.get_tasks({"section": tokens["doPileGid"], "opt_fields": ["completed"]})
 
+  resultList = list(result)
+
+  for i in resultList:
+    # if it's been completed
+    if(i["completed"] == True):
+      x += 1
+
+  print(colors.green + "there are currently " + str(len(resultList)) + " Mites in your Do Pile, and " + str(x) + " mite(s) are/is completed!")
+
+  if x > 0:
+    print("clean your Mitebox to move these to the Done Pile.")
+    
   getUserInput()
 
 def getRandoMite():
@@ -103,7 +116,7 @@ def getRandoMite():
       print(randoMite["name"] + "; you can access it here: " + randoMite["permalink_url"])
       x += 1
     else:
-      print(colors.red + "I can pick an incompleted one faster if you clean out your mitebox first...")
+      print(colors.red + "i can pick one faster if you clean out your Mitebox first...")
 
   getUserInput()
 
