@@ -44,13 +44,15 @@ def getUserInput():
 # function for creating task (sending request)
 def createMite(miteVal):
   try:
-    htmlText = "<body>This task was created using <a href='https://github.com/samharp/asana-mites'>Mitebox (Python)</a>.</body>"
+    htmlText = "<body>This task was created through <a href='https://github.com/samharp/asana-mites'>Mitebox Manager</a>.</body>"
     # rootie = etree.HTML(htmlText)
 
     # send POST request
     result = client.tasks.create_task({"name": miteVal, "assignee": tokens["assigneeGid"], "workspace": tokens["workspaceGid"], "projects": [tokens["miteboxGid"]], "tags": [tokens["tagsGid"]], "html_notes": htmlText})
     # success message
     print(colors.green + "beep-boop: new mite made! you can access it here: " + result["permalink_url"])
+    # comment on new task
+    # result["gid"]
 
   except KeyError:
     print(colors.red + "something doesn't look right with your token configuration. please reference the README to confirm it is set up correctly and try again.")

@@ -37,7 +37,7 @@ This folder will hold all of the data that you don't want to go public (and out 
 
 You have your private space for sensitive data, now you need the data itself.
 
-First, you will need to request an Asana Access Token. Follow [these steps](https://developers-legacy.asana.com/docs/personal-access-token) to get your authentication token.
+First, you will need to request an Asana Access Token. Follow [these steps](https://developers-legacy.asana.com/docs/personal-access-token) to get your authentication token. If you would like to setup a bot to show as making these tasks (instead of yourself), you will have to make a separate Asana account for said bot (highly recommend naming it "Mitebot").
 
 Next, you will need the GID values for your Asana workspace, Mitebox, Do Pile, Done Pile, assignee (yourself), and tag (it's recommended to create a "Mite" tag in Asana to allow for easy searching/managing). You can pull these values by using the [Asana Request tester](https://developers.asana.com/reference/createtask) or by deconstructing links to your project/task/etc., like:
 
