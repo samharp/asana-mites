@@ -44,15 +44,18 @@ def getUserInput():
 # function for creating task (sending request)
 def createMite(miteVal):
   try:
+    # comment on new task
     htmlText = "<body>This task was created through <a href='https://github.com/samharp/asana-mites'>Mitebox Manager</a>.</body>"
-    # rootie = etree.HTML(htmlText)
 
     # send POST request
-    result = client.tasks.create_task({"name": miteVal, "assignee": tokens["assigneeGid"], "workspace": tokens["workspaceGid"], "projects": [tokens["miteboxGid"]], "tags": [tokens["tagsGid"]], "html_notes": htmlText})
+    # if tags gid exists, create it with that tag
+    if "tagsGid" in tokens and tokens["tagsGid"] != "":
+      result = client.tasks.create_task({"name": miteVal, "assignee": tokens["assigneeGid"], "workspace": tokens["workspaceGid"], "projects": [tokens["miteboxGid"]], "tags": [tokens["tagsGid"]], "html_notes": htmlText})
+    else:
+      result = client.tasks.create_task({"name": miteVal, "assignee": tokens["assigneeGid"], "workspace": tokens["workspaceGid"], "projects": [tokens["miteboxGid"]], "html_notes": htmlText})
+    
     # success message
     print(colors.green + "beep-boop: new mite made! you can access it here: " + result["permalink_url"])
-    # comment on new task
-    # result["gid"]
 
   except KeyError:
     print(colors.red + "something doesn't look right with your token configuration. please reference the README to confirm it is set up correctly and try again.")
@@ -98,10 +101,10 @@ def getMiteboxInfo():
     if(i["completed"] == True):
       x += 1
 
-  print(colors.green + "there are currently " + str(len(resultList)) + " Mites in your Do Pile, and " + str(x) + " mite(s) are/is completed!")
+  print(colors.green + "there are currently " + str(len(resultList)) + " Mites in your Do Pile")
 
   if x > 0:
-    print("clean your Mitebox to move these to the Done Pile.")
+    print(str(x) + " of them are/is completed. clean your Mitebox to move these to the Done Pile.")
 
   getUserInput()
 
