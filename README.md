@@ -1,4 +1,4 @@
-# Use Asana's API to create & manage Mites (small, yet pesky tasks) in Terminal
+# Mitebox Manager: Use Asana's API to create & manage small, yet pesky tasks
 
 Mites (patent-pending) are the tiny tasks that you think of throughout the day, "Oh yeah, I'll have to remember that when I get home." They never take longer than 5 minutes to complete (wash the dishes, water the plants, or feed the cat) - but when they start to pile up, they pile up fast.
 
@@ -37,9 +37,9 @@ This folder will hold all of the data that you don't want to go public (and out 
 
 You have your private space for sensitive data, now you need the data itself.
 
-First, you will need to request an Asana Access Token. Follow [these steps](https://developers-legacy.asana.com/docs/personal-access-token) to get your authentication token. If you would like to setup a bot to show as making these tasks (instead of yourself), you will have to make a separate Asana account for said bot (highly recommend naming it "Mitebot").
+First, you will need to request an Asana Access Token. Follow [these steps](https://developers-legacy.asana.com/docs/personal-access-token) to get your authentication token. If you would like to setup a bot as making these tasks (instead of yourself), you will have to make a separate Asana account for said bot (highly recommend naming it "Mitebot" and setting its profile picture to the one included in this project).
 
-Next, you will need the GID values for your Asana workspace, Mitebox, Do Pile, Done Pile, assignee (yourself), and tag (it's recommended to create a "Mite" tag in Asana to allow for easy searching/managing). You can pull these values by using the [Asana Request tester](https://developers.asana.com/reference/createtask) or by deconstructing links to your project/task/etc., like:
+Next, you will need the GID values for your Asana workspace, Mitebox, Do Pile, Done Pile, and assignee (yourself). Optionally, you can include a GID value of a tag if you choose to include a "Mite" tag on each generated task (for easy searching/managing). You can pull these values by using the [Asana Request tester](https://developers.asana.com/reference/createtask) or by deconstructing links to your project/task/etc., like:
 
 ```
 www.asana.com/0/{project_gid}/{task_gid}
@@ -61,13 +61,13 @@ You will need to create the following JSON file to hold your token values & GIDs
 }
 ```
 
-**NOTE:** Current implementation only allows for one Asana workspace, Mitebox, and assignee. This may change later, but due to the nature of what mites are, these small tasks shouldn't be categorized anyways (and if they do need to be, they probably aren't mites, but *tasks*).
+**NOTE:** Current implementation only allows for one Asana workspace, Mitebox, and assignee. This may change later, but due to the nature of what mites are, these small tasks should all be included in the same to-do list (and if they need to be categorized, they probably aren't mites, but *tasks*).
 
 <br>
 
 ## Running the thing
 
-To run the `mites.py` file, either double click on the file in your file explorer or `cd` to the folder where these files reside in Terminal/PowerShell. From there, you can run the file by entering:
+To run the Python file, either double click on the file in your file explorer or `cd` to the folder where these files reside in Terminal/PowerShell. From there, you can run the file by entering:
 
 ```
 python mites.py
@@ -89,11 +89,11 @@ python mites.py "the name of my mite in quotes"
 
 ### Management Commands
 
-Additional commands allow for simple management of your mites. Most management (renaming, markingas complete, etc.) will need to be done inside Asana, but the following commands allow for management within Terminal/PowerShell:
+Additional commands allow for simple management of your mites. Most management (renaming, marking as complete, etc.) will need to be done inside Asana, but the following commands allow for management within Terminal/PowerShell:
 
 - **'C' to clean:** Move all of your completed mites to the Done Pile.
 - **'I' for info:** Get basic information on your Mitebox
-- **'Z' for random:** Don't know what you should do? 'Z' returns a random mite that has not-yet been completed
+- **'Z' for random:** Don't know what you should do? 'Z' returns a random mite that has not yet been completed
 - **'X' to exit:** Simply exit the mite-creation loop and exit the program
 
 <br>
