@@ -21,17 +21,26 @@ client = asana.Client.access_token(tokens["accessToken"])
 # remove pesky deprecation warnings
 client.LOG_ASANA_CHANGE_WARNINGS = False
 
+def welcomeUser():
+  print(colors.reset + "----------")
+  print("Welcome to Mitebox Manager!")
+  getUserInput()
+
 # function for accepting user input
 def getUserInput():
   # get user input (what to name mite)
   print(colors.reset + "__________")
-  print("enter the title of a new Mite")
-  print("(...or one of the following commands: C to clean; I for info; Z for random Mite; X to exit)")
+  print("Enter the name of your new mite or one of the following commands:")
+  print(colors.cyan + "C" + colors.reset + " to Clean: move done items to Done Pile")
+  print(colors.cyan + "I" + colors.reset + " for Info: fetch basic stats on your Mitebox)")
+  print(colors.cyan + "Z" + colors.reset + " for Random: fetch a random mite to work on")
+  print(colors.cyan + "X" + colors.reset + " to Exit: terminate Mitebox Manager")
   userInput = input(colors.cyan + ": ")
 
   if userInput.lower() == "exit" or userInput.lower() == "x":
     tokensFile.close()
-    print(colors.reset)
+    # print(colors.reset)
+    print(colors.reset + "xxxxxxxxxx")
   elif userInput.lower() == "clean" or userInput.lower() == "c":
     cleanMitebox()
   elif userInput.lower() == "info" or userInput.lower() == "i":
@@ -133,4 +142,5 @@ def getRandoMite():
 if len(sys.argv) >= 2:
   createMite(sys.argv[1])
 else:
-  getUserInput()
+  welcomeUser()
+  # getUserInput()
