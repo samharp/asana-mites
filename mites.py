@@ -90,26 +90,41 @@ def createMite(miteVal):
 
 # function for cleaning up mitebox
 def cleanMitebox():
-  numberOfTasks = 0
+  numberOfTasksAssigned = 0
+  numberOfTasksMoved = 0
   try:
     # get all tasks in to-do section
-    tasksCompletedResult = client.tasks.get_tasks({"section": tokens["doPileGid"], "opt_fields": ["completed"]})
+    tasksCompletedResult = client.tasks.get_tasks({"section": tokens["doPileGid"], "opt_fields": ["completed", "assignee"]})
 
     # Iterating through the result as a list
     for i in list(tasksCompletedResult):
-      # if it's been completed
+
+      # if there is no assignee...
+      if(i["assignee"] == None):
+        try:
+          # ...assign to given assignee
+          taskAssignresult = client.tasks.update_task(i["gid"], {'assignee': tokens["assigneeGid"]})
+          numberOfTasksAssigned += 1
+        except:
+          print(colors.red + "it looks like something happened while assigning tasks to the provided assignee... Check your setup and try again.")
+
+      # if it's been completed...
       if(i["completed"] == True):
         try:
-          # move completed task to the done pile
+          # ...move completed task to the done pile
           taskMovingResult = client.sections.add_task_for_section(tokens["donePileGid"], {"task": i["gid"]})
-          numberOfTasks += 1
+          numberOfTasksMoved += 1
         except:
           print(colors.red + "it looks like something happened while moving task(s) to the Done Pile... Check your setup and try again.")
-    # success message
-    if(numberOfTasks > 0):
-      print(colors.green + "beep-boop: your Mitebox is all cleaned up! " + str(numberOfTasks) + " completed task(s) moved to the Done Pile.")
-    else:
-      print("looks like there were no completed tasks to be moved to the Done Pile...")
+    # Done Messages
+    print(colors.green + "beep-boop: your Mitebox is all cleaned up!")
+
+    if(numberOfTasksAssigned > 0):
+      print(colors.green + str(numberOfTasksAssigned) + " task(s) assigned to the provided assignee.")
+
+    if(numberOfTasksMoved > 0):
+      print(colors.green + str(numberOfTasksMoved) + " completed task(s) moved to the Done Pile.")
+
   except KeyboardInterrupt:
     print(colors.reset + "xxxxxxxxxx")
     sys.exit()
@@ -175,4 +190,3 @@ if len(sys.argv) >= 2:
   createMite(sys.argv[1])
 else:
   welcomeUser()
-  # getUserInput()
